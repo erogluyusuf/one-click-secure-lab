@@ -1,0 +1,26 @@
+---
+- name: Deploy Secure Lab Infrastructure
+  hosts: lab_server
+  become: yes
+  tasks:
+    - name: Gerekli konfigürasyon dizinlerini oluştur
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      with_items:
+        - /opt/secure-lab/wireguard
+        - /opt/secure-lab/pihole/etc
+        - /opt/secure-lab/pihole/dnsmasq
+        - /opt/secure-lab/suricata/logs
+        - /opt/secure-lab/suricata/etc
+
+    - name: Docker Compose sablonunu kopyala
+      template:
+        src: templates/docker-compose.yml.j2
+        dest: /opt/secure-lab/docker-compose.yml
+
+    - name: Lab servislerini ayaga kaldir
+      command: docker compose -f /opt/secure-lab/docker-compose.yml up -d
+      args:
+        chdir: /opt/secure-lab/
