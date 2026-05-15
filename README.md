@@ -16,7 +16,7 @@ To deploy the system on any Linux environment with a single click, follow these 
 **1. Prepare the Network Infrastructure (Terraform):** 
 ```bash
 cd terraform
-terraform init
+terraform init 
 terraform apply -auto-approve
 ```
 **2. Deploy Security Services (Ansible):**
