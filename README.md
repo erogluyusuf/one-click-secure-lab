@@ -12,7 +12,7 @@ This infrastructure is designed to ensure that devices can access the internet i
 
 ##  Deployment
 To deploy the system on any Linux environment with a single click, follow these steps:
-
+ 
 **1. Prepare the Network Infrastructure (Terraform):** 
 ```bash
 cd terraform
